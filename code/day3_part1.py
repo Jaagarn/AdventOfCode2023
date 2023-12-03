@@ -24,36 +24,22 @@ with open(path, 'r', encoding="utf-8") as f:
     lines = f.read().splitlines()
 
 matches_numbers = [list(re.finditer(r'\d+', line)) for line in lines]
-
 matches_symbols = [list(re.finditer(r'[^\d\.]', line)) for line in lines]
 
 total_value = 0
 
 for i in range(len(lines)):
-    if i == 0:
-        match_nrs = matches_numbers[i]
-        match_sym_list = []
-        match_sym_list.append(matches_symbols[i])
-        match_sym_list.append(matches_symbols[i+1])
-        for nr in match_nrs:
-            match_value = matches(nr, match_sym_list)
-            total_value = match_value + total_value
-    elif i == len(lines) - 1:
-        match_nrs = matches_numbers[i]
-        match_sym_list = []
+    match_nrs = matches_numbers[i]
+    match_sym_list = []
+
+    if i != 0:
         match_sym_list.append(matches_symbols[i-1])
-        match_sym_list.append(matches_symbols[i])
-        for nr in match_nrs:
-            match_value = matches(nr, match_sym_list)
-            total_value = match_value + total_value
-    else:
-        match_nrs = matches_numbers[i]
-        match_sym_list = []
-        match_sym_list.append(matches_symbols[i-1])
-        match_sym_list.append(matches_symbols[i])
+    if i != len(lines) - 1:
         match_sym_list.append(matches_symbols[i+1])
-        for nr in match_nrs:
-            match_value = matches(nr, match_sym_list)
-            total_value = match_value + total_value
+      
+    match_sym_list.append(matches_symbols[i])
+    for nr in match_nrs:
+        match_value = matches(nr, match_sym_list)
+        total_value = match_value + total_value
 
 print(total_value)
