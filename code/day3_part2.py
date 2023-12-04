@@ -41,6 +41,6 @@ for i in range(len(lines)):
     
     for sym in match_sym:
         match_value = matches(sym, match_nrs_list)
-        total_value = match_value + total_value
+        total_value += match_value
 
 print(total_value)

@@ -40,6 +40,6 @@ for i in range(len(lines)):
     match_sym_list.append(matches_symbols[i])
     for nr in match_nrs:
         match_value = matches(nr, match_sym_list)
-        total_value = match_value + total_value
+        total_value += match_value
 
 print(total_value)

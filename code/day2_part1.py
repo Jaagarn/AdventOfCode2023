@@ -30,7 +30,7 @@ def game_ids_added(game_input):
         split_game = game.split(":")
         if(valid_game(split_game[1])):
             extract_id = split_game[0].split()
-            total_value = total_value + int (extract_id[1])
+            total_value += int (extract_id[1])
     return total_value
 
 if len(sys.argv) != 2:

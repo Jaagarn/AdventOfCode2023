@@ -28,7 +28,7 @@ def iterate_games(game_input):
 
     for game in game_input:
         split_game = game.split(":")
-        total_value = total_value+cal_minimum_cubes(split_game[1])
+        total_value += cal_minimum_cubes(split_game[1])
 
     return total_value
 
